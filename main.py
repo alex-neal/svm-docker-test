@@ -1,5 +1,5 @@
 #!flask/bin/python
-from flask import Flask
+from flask import Flask, request, jsonify
 from flask import request
 from sklearn.svm import SVC
 from sklearn import datasets
@@ -30,7 +30,8 @@ def predict():
     loaded_svm = pickle.load(open('svm_model.pkl', 'rb'))
     prediction = loaded_svm.predict([[sepal_length, sepal_width, petal_length, petal_width]])
     class_names = ['setosa', 'versicolor', 'virginica']
-    return class_names[prediction[0]]
+    response = {'species': class_names[prediction[0]]}
+    return jsonify(response)
 
 if __name__ == '__main__':
     app.run(port=80,host='0.0.0.0')
