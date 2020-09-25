@@ -30,7 +30,7 @@ def predict():
     loaded_svm = pickle.load(open('svm_model.pkl', 'rb'))
     prediction = loaded_svm.predict([[sepal_length, sepal_width, petal_length, petal_width]])
     class_names = ['setosa', 'versicolor', 'virginica']
-    response = {'species': class_names[prediction[0]]}
+    response = {"species": class_names[prediction[0]]}
     return jsonify(response)
 
 if __name__ == '__main__':
